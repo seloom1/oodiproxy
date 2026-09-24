@@ -1,4 +1,10 @@
-# OODI Proxy Seloom1
+# 🚀 OODI Proxy Seloom1
+
+<p align="center">
+  <a href="https://github.com/seloom1/oodiproxy/releases"><img src="https://img.shields.io/github/v/release/seloom1/oodiproxy?style=for-the-badge&color=00d9ff" alt="Latest release" /></a>
+  <a href="https://github.com/seloom1/oodiproxy/releases"><img src="https://img.shields.io/badge/Android-API%2024%2B-3ddc84?style=for-the-badge&logo=android&logoColor=white" alt="Android API 24+" /></a>
+  <a href="https://github.com/seloom1/oodiproxy/releases"><img src="https://img.shields.io/github/downloads/seloom1/oodiproxy/v2.0/total?style=for-the-badge&color=bf5af2" alt="Downloads" /></a>
+</p>
 
 <p align="center">
   <img src="docs/images/upcoming-features.png" alt="ميزات تطبيق OODI Proxy Seloom1" width="520" />
@@ -6,7 +12,7 @@
 
 <p align="center"><strong>تجربة أسرع، تحكم أفضل، واتصال WireGuard أكثر مرونة.</strong></p>
 
-## نبذة عن المشروع
+## 🌐 نبذة عن المشروع
 
 **OODI Proxy Seloom1** هو تطبيق Android مبني على Capacitor وWireGuard لتوفير واجهة عربية عملية لإدارة اتصالات VPN، مع دعم مشاركة اتصال VPN مع الأجهزة الأخرى، مراقبة الاستخدام، وإدارة خوادم WireGuard من مكان واحد.
 
@@ -16,9 +22,9 @@
 com.oodiproxyseloom1
 ```
 
-## الميزات الحالية
+## ✨ الميزات الحالية
 
-### اتصال WireGuard وإدارة الخوادم
+### 🔐 اتصال WireGuard وإدارة الخوادم
 
 - اتصال WireGuard أصلي عبر خدمة VPN على Android.
 - إضافة عدة خوادم WireGuard وإدارتها محلياً.
@@ -30,7 +36,7 @@ com.oodiproxyseloom1
 - دعم DNS وMTU وPersistent Keepalive وAllowed IPs.
 - خيار تجاوز مسارات الشبكة المحلية عند الحاجة.
 
-### استثناء التطبيقات من VPN
+### 🛡️ استثناء التطبيقات من VPN
 
 - حقل مخصص في الواجهة الرئيسية لفتح إعدادات الاستثناءات.
 - خيار مستقل داخل القائمة المنسدلة.
@@ -42,7 +48,7 @@ com.oodiproxyseloom1
 - تمرير القائمة فعلياً إلى WireGuard عبر `ExcludedApplications`، وليس مجرد إعداد شكلي.
 - حفظ التطبيقات المختارة محلياً وإعادة استخدامها عند الاتصال التالي.
 
-### مشاركة الإنترنت وHotspot
+### 📡 مشاركة الإنترنت وHotspot
 
 - مشاركة اتصال VPN مع الأجهزة المتصلة عبر Hotspot.
 - دعم Wi-Fi وUSB Tethering حسب إمكانيات الجهاز.
@@ -52,7 +58,7 @@ com.oodiproxyseloom1
 - تغيير ثيم بطاقة المشاركة بين Cyan وViolet وGreen.
 - إعداد اسم الشبكة وكلمة المرور وخيارات الشبكة من داخل التطبيق.
 
-### الإحصائيات والمراقبة
+### 📊 الإحصائيات والمراقبة
 
 - عرض عنوان IP الخارجي والدولة عند الاتصال.
 - عرض إجمالي التنزيل والرفع من نفق WireGuard.
@@ -61,7 +67,7 @@ com.oodiproxyseloom1
 - سجل للاتصالات السابقة مع إمكانية مسحه.
 - تحديث معلومات الشبكة يدوياً عند الحاجة.
 
-### التحديثات والإشعارات
+### 🔔 التحديثات والإشعارات
 
 - فحص ملف تحديث عام مستضاف مجاناً على GitHub.
 - فحص عند تشغيل التطبيق ثم بشكل دوري أثناء تشغيله.
@@ -71,7 +77,7 @@ com.oodiproxyseloom1
 - ملف التحديث الحالي:
   [updates.json](updates.json)
 
-### الواجهة وتجربة الاستخدام
+### 🎨 الواجهة وتجربة الاستخدام
 
 - واجهة عربية RTL مناسبة للشاشات الصغيرة.
 - تصميم داكن مع بطاقات واضحة وحالات اتصال ملونة.
@@ -80,7 +86,7 @@ com.oodiproxyseloom1
 - قائمة منسدلة تجمع إدارة الخوادم والإعدادات والتصدير والاستثناءات.
 - دعم صور وأيقونات التطبيقات داخل قائمة الاستثناءات.
 
-## بيانات الإصدار الحالي
+## 📦 بيانات الإصدار الحالي
 
 | العنصر | القيمة |
 |---|---|
@@ -91,14 +97,14 @@ com.oodiproxyseloom1
 | Target SDK | API 36 |
 | Release | [v2.0 على GitHub](https://github.com/seloom1/oodiproxy/releases/tag/v2.0) |
 
-## التحميل
+## ⬇️ التحميل
 
 - [تحميل Release APK](https://github.com/seloom1/oodiproxy/releases/download/v2.0/oodiproxyseloom1-2.0-release.apk)
 - [تحميل Debug APK](https://github.com/seloom1/oodiproxy/releases/download/v2.0/oodiproxyseloom1-2.0-debug.apk)
 
 > نسخة Release الحالية موقعة بمفتاح اختبار للتجربة. للنشر الرسمي يجب استخدام مفتاح توقيع ثابت والاحتفاظ به لجميع الإصدارات اللاحقة.
 
-## البناء محلياً
+## 🧰 البناء محلياً
 
 المتطلبات: Node.js، Android SDK، JDK 21، وAndroid Platform 36.
 
@@ -117,43 +123,22 @@ android/app/build/outputs/apk/debug/
 android/app/build/outputs/apk/release/
 ```
 
-## نشر تحديث جديد
-
-1. ارفع APK جديداً إلى GitHub Release برقم أعلى، مثل `v2.1`.
-2. عدّل `updates.json` إلى `version: "2.1"`.
-3. حدّث رابط APK داخل `updates.json`.
-4. ادفع التعديل إلى فرع `main`.
-5. سيقرأ التطبيق الملف ويعرض إشعار التحديث للمستخدمين.
-
-مثال:
-
-```json
-{
-  "version": "2.1",
-  "title": "تحديث جديد متوفر",
-  "message": "تحسينات وإصلاحات جديدة.",
-  "url": "https://github.com/seloom1/oodiproxy/releases/download/v2.1/oodiproxyseloom1-2.1-release.apk",
-  "publishedAt": "2026-09-24T00:00:00Z",
-  "mandatory": false
-}
-```
-
-## ملاحظات مهمة
+## ⚠️ ملاحظات مهمة
 
 - تغيير Package Name أو مفتاح التوقيع يجعل Android يتعامل مع النسخة كتطبيق مختلف.
 - يجب استخدام نفس مفتاح التوقيع في كل الإصدارات المستقبلية حتى تعمل التحديثات فوق النسخة الحالية.
 - صلاحية `QUERY_ALL_PACKAGES` مستخدمة لعرض التطبيقات المثبتة مع أيقوناتها. عند النشر على Google Play يجب مراجعة سياسة Google الخاصة بهذه الصلاحية.
 - نظام GitHub يعرض إشعار التحديث داخل التطبيق عند فتحه أو عند تنفيذ الفحص الدوري؛ لا يثبت APK تلقائياً دون تدخل المستخدم.
 
-## English summary
+## 🇬🇧 English summary
 
 OODI Proxy Seloom1 is an Arabic RTL Android WireGuard client built with Capacitor. It provides multi-server management, native WireGuard connectivity, hotspot sharing, traffic statistics, app exclusions with searchable app icons, local settings, and a GitHub-hosted in-app update manifest.
 
 The current standalone application ID is `com.oodiproxyseloom1`, version `2.0`, with Android API 24 as the minimum supported version and API 36 as the target SDK.
 
-## Credits
+## 🙌 Credits
 
-### المشاريع والمكونات المشتركة
+### 🤝 المشاريع والمكونات المشتركة
 
 - **NetShare No Root** — الإلهام والمكوّنات المرتبطة بمشاركة اتصال الإنترنت عبر Hotspot وProxy بدون Root.
 - **WireGuard** — تقنية نفق VPN مفتوحة المصدر والمكوّن الأساسي للاتصال المشفر.
@@ -163,7 +148,7 @@ The current standalone application ID is `com.oodiproxyseloom1`, version `2.0`, 
 - **Android PackageManager** — قراءة التطبيقات وأسمائها وأيقوناتها لدعم استثناء التطبيقات من VPN.
 - **GitHub Releases وGitHub Raw** — استضافة الإصدارات وملف التحديثات المجاني.
 
-### المساعدون وأدوات التطوير
+### 🧑‍💻 المساعدون وأدوات التطوير
 
 الشكر لكل من ساهم في تطوير الفكرة والمكونات والتجربة، ولأدوات **Android SDK وJDK وGradle وCapacitor CLI وGitHub CLI** المستخدمة في البناء والاختبار والنشر. كما تم استخدام مساعد برمجي للمساعدة في تصميم الواجهة، ربط JavaScript مع Android، اختبار TypeScript، إصلاح أخطاء البناء، تجهيز التوثيق، وإدارة الإصدارات.
 
