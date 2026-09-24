@@ -18,28 +18,6 @@ com.oodiproxyseloom1
 
 ## الميزات الحالية
 
-## المشاريع والمكونات المستخدمة والمساعدون
-
-يعتمد OODI Proxy Seloom1 على مجموعة من المشاريع والمكونات المفتوحة المصدر والتقنيات المساعدة التالية:
-
-| المشروع أو المكون | الاستخدام داخل التطبيق |
-|---|---|
-| **NetShare No Root** | الاستفادة من فكرة مشاركة اتصال الإنترنت عبر Hotspot وProxy بدون الحاجة إلى صلاحيات Root، مع تطوير واجهة الإعدادات ومراقبة الأجهزة والبيانات داخل التطبيق. |
-| **WireGuard** | محرك نفق VPN الأساسي للاتصال بالخوادم وتشفير حركة المرور وإدارة إعدادات Interface وPeer. |
-| **WireGuard Android Tunnel** | مكتبة Android المدمجة لتشغيل وإيقاف نفق WireGuard وقراءة إحصائيات النقل. |
-| **Capacitor** | الجسر بين واجهة React/TypeScript وكود Android الأصلي، مع Plugins خاصة للـVPN والتطبيقات المثبتة. |
-| **React وTypeScript** | بناء واجهة التطبيق ومكونات النوافذ والقوائم وإدارة الحالة والإعدادات. |
-| **Vite** | بناء نسخة الويب وتجهيز ملفات التطبيق قبل مزامنتها مع Android. |
-| **Android PackageManager** | قراءة التطبيقات القابلة للتشغيل وإظهار أسمائها وأيقوناتها وتمرير الحزم المحددة إلى قائمة استثناءات WireGuard. |
-| **GitHub Releases** | استضافة ملفات APK ونسخ الإصدارات وتوفير رابط تحميل مجاني. |
-| **GitHub Raw Manifest** | استضافة ملف `updates.json` الذي يستخدمه التطبيق لفحص التحديثات وإظهار إشعار داخل التطبيق. |
-
-### المساعدون وأدوات التطوير
-
-تم استخدام أدوات التطوير والبناء والمراجعة للمساعدة في تجهيز المشروع، وتشمل Android SDK وJDK وGradle وCapacitor CLI وGitHub CLI، إضافة إلى مساعد برمجي لتصميم الواجهة، ربط JavaScript مع Android، اختبار TypeScript، إصلاح أخطاء البناء، وتجهيز التوثيق والإصدارات.
-
-> حقوق وأسماء المشاريع الخارجية تبقى لأصحابها ومطوريها. هذا المشروع يوضح المكونات المستخدمة لأغراض التوثيق والشفافية.
-
 ### اتصال WireGuard وإدارة الخوادم
 
 - اتصال WireGuard أصلي عبر خدمة VPN على Android.
@@ -172,3 +150,21 @@ android/app/build/outputs/apk/release/
 OODI Proxy Seloom1 is an Arabic RTL Android WireGuard client built with Capacitor. It provides multi-server management, native WireGuard connectivity, hotspot sharing, traffic statistics, app exclusions with searchable app icons, local settings, and a GitHub-hosted in-app update manifest.
 
 The current standalone application ID is `com.oodiproxyseloom1`, version `2.0`, with Android API 24 as the minimum supported version and API 36 as the target SDK.
+
+## Credits
+
+### المشاريع والمكونات المشتركة
+
+- **NetShare No Root** — الإلهام والمكوّنات المرتبطة بمشاركة اتصال الإنترنت عبر Hotspot وProxy بدون Root.
+- **WireGuard** — تقنية نفق VPN مفتوحة المصدر والمكوّن الأساسي للاتصال المشفر.
+- **WireGuard Android Tunnel** — مكتبة Android لتشغيل النفق وإدارته وقراءة إحصائياته.
+- **Capacitor** — الجسر المستخدم لربط واجهة React/TypeScript بخدمات Android الأصلية.
+- **React وTypeScript وVite** — تقنيات بناء الواجهة وتجهيز نسخة Android.
+- **Android PackageManager** — قراءة التطبيقات وأسمائها وأيقوناتها لدعم استثناء التطبيقات من VPN.
+- **GitHub Releases وGitHub Raw** — استضافة الإصدارات وملف التحديثات المجاني.
+
+### المساعدون وأدوات التطوير
+
+الشكر لكل من ساهم في تطوير الفكرة والمكونات والتجربة، ولأدوات **Android SDK وJDK وGradle وCapacitor CLI وGitHub CLI** المستخدمة في البناء والاختبار والنشر. كما تم استخدام مساعد برمجي للمساعدة في تصميم الواجهة، ربط JavaScript مع Android، اختبار TypeScript، إصلاح أخطاء البناء، تجهيز التوثيق، وإدارة الإصدارات.
+
+> حقوق وأسماء المشاريع الخارجية محفوظة لأصحابها ومطوريها. يرد هذا القسم للتوثيق والامتنان وبيان المكونات المشتركة المستخدمة في المشروع.
