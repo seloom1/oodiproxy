@@ -1,0 +1,6 @@
+{
+  "name": "SeloomWarp VPN",
+  "description": "WireGuard and Cloudflare Warp VPN client interface with URI link support, server management, real-time traffic statistics, and config export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

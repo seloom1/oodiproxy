@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "capacitor.cordova.android.plugins.capacitor-cordova-android-plugins-release-24:/drawable-v23/compat_splash_screen.xml",
+        "source": "capacitor.cordova.android.plugins.capacitor-cordova-android-plugins-core-splashscreen-1.0.1-1:/drawable-v23/compat_splash_screen.xml"
+    },
+    {
+        "merged": "capacitor.cordova.android.plugins.capacitor-cordova-android-plugins-release-24:/drawable-v23/abc_control_background_material.xml",
+        "source": "capacitor.cordova.android.plugins.capacitor-cordova-android-plugins-appcompat-1.7.1-17:/drawable-v23/abc_control_background_material.xml"
+    },
+    {
+        "merged": "capacitor.cordova.android.plugins.capacitor-cordova-android-plugins-release-24:/drawable-v23/compat_splash_screen_no_icon_background.xml",
+        "source": "capacitor.cordova.android.plugins.capacitor-cordova-android-plugins-core-splashscreen-1.0.1-1:/drawable-v23/compat_splash_screen_no_icon_background.xml"
+    }
+]

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">OODI PROXY SELOOM1</string>
+    <string name="title_activity_main">OODI PROXY SELOOM1</string>
+    <string name="package_name">com.seloomwarp.vpn</string>
+    <string name="custom_url_scheme">com.seloomwarp.vpn</string>
+</resources>

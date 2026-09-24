@@ -1,0 +1,16 @@
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.seloomwarp.vpn',
+  appName: 'SeloomWarp VPN',
+  webDir: 'dist',
+  server: {
+    androidScheme: 'https'
+  },
+  android: {
+    backgroundColor: '#060814',
+    allowMixedContent: true
+  }
+};
+
+export default config;

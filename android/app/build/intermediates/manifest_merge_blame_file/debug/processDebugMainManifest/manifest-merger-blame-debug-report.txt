@@ -1,0 +1,236 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.oodiproxyseloom1"
+4    android:versionCode="6"
+5    android:versionName="2.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="36" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:4:5-67
+11-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:5:5-79
+12-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:5:22-76
+13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+13-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:6:5-76
+13-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:6:22-73
+14    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+14-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:7:5-76
+14-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:7:22-73
+15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+15-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:8:5-79
+15-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:8:22-76
+16    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
+16-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:9:5-78
+16-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:9:22-75
+17    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+17-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:10:5-77
+17-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:10:22-74
+18    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+18-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:11:5-94
+18-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:11:22-91
+19    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+19-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:12:5-89
+19-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:12:22-86
+20    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+20-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:13:5-77
+20-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:13:22-74
+21    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+21-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:14:5-77
+21-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:14:22-74
+22
+23    <permission
+23-->[androidx.core:core:1.17.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/11094a199bb7945826b161d8a9c17beb/transformed/core-1.17.0/AndroidManifest.xml:22:5-24:47
+24        android:name="com.oodiproxyseloom1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+24-->[androidx.core:core:1.17.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/11094a199bb7945826b161d8a9c17beb/transformed/core-1.17.0/AndroidManifest.xml:23:9-81
+25        android:protectionLevel="signature" />
+25-->[androidx.core:core:1.17.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/11094a199bb7945826b161d8a9c17beb/transformed/core-1.17.0/AndroidManifest.xml:24:9-44
+26
+27    <uses-permission android:name="com.oodiproxyseloom1.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+27-->[androidx.core:core:1.17.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/11094a199bb7945826b161d8a9c17beb/transformed/core-1.17.0/AndroidManifest.xml:26:5-97
+27-->[androidx.core:core:1.17.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/11094a199bb7945826b161d8a9c17beb/transformed/core-1.17.0/AndroidManifest.xml:26:22-94
+28
+29    <application
+29-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:16:5-67:19
+30        android:allowBackup="true"
+30-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:17:9-35
+31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+31-->[androidx.core:core:1.17.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/11094a199bb7945826b161d8a9c17beb/transformed/core-1.17.0/AndroidManifest.xml:28:18-86
+32        android:debuggable="true"
+33        android:extractNativeLibs="false"
+34        android:icon="@mipmap/ic_launcher"
+34-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:18:9-43
+35        android:label="@string/app_name"
+35-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:19:9-41
+36        android:roundIcon="@mipmap/ic_launcher_round"
+36-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:20:9-54
+37        android:supportsRtl="true"
+37-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:21:9-35
+38        android:theme="@style/AppTheme" >
+38-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:22:9-40
+39        <activity
+39-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:24:9-37:20
+40            android:name="com.seloomwarp.vpn.MainActivity"
+40-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:26:13-41
+41            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
+41-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:25:13-148
+42            android:exported="true"
+42-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:30:13-36
+43            android:label="@string/title_activity_main"
+43-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:27:13-56
+44            android:launchMode="singleTask"
+44-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:29:13-44
+45            android:theme="@style/AppTheme.NoActionBarLaunch" >
+45-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:28:13-62
+46            <intent-filter>
+46-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:32:13-35:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:33:17-69
+47-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:33:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:34:17-77
+49-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:34:27-74
+50            </intent-filter>
+51        </activity>
+52
+53        <provider
+54            android:name="androidx.core.content.FileProvider"
+54-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:40:13-62
+55            android:authorities="com.oodiproxyseloom1.fileprovider"
+55-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:41:13-64
+56            android:exported="false"
+56-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:42:13-37
+57            android:grantUriPermissions="true" >
+57-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:43:13-47
+58            <meta-data
+58-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:44:13-46:64
+59                android:name="android.support.FILE_PROVIDER_PATHS"
+59-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:45:17-67
+60                android:resource="@xml/file_paths" />
+60-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:46:17-51
+61        </provider>
+62
+63        <!--
+64             The app-owned service is the only entry point. The WireGuard tunnel
+65             library contributes its internal service through its own manifest.
+66        -->
+67        <service
+67-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:51:9-62:19
+68            android:name="com.seloomwarp.vpn.SeloomVpnService"
+68-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:52:13-45
+69            android:exported="false"
+69-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:55:13-37
+70            android:foregroundServiceType="specialUse"
+70-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:54:13-55
+71            android:permission="android.permission.BIND_VPN_SERVICE" >
+71-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:53:13-69
+72            <property
+72-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:56:13-58:46
+73                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+73-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:57:17-76
+74                android:value="vpn_tunnel" />
+74-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:58:17-43
+75
+76            <intent-filter>
+76-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:59:13-61:29
+77                <action android:name="android.net.VpnService" />
+77-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:60:17-64
+77-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:60:25-62
+78            </intent-filter>
+79        </service>
+80        <service
+80-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:63:9-66:63
+81            android:name="com.seloomwarp.vpn.NetShareService"
+81-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:64:13-44
+82            android:exported="false"
+82-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:65:13-37
+83            android:foregroundServiceType="connectedDevice" />
+83-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:66:13-60
+84        <service
+84-->[com.wireguard.android:tunnel:1.0.20260102] /home/ubuntu/.gradle/caches/8.14.3/transforms/b3c6fe14201b8d8e784426f4cf951db0/transformed/tunnel-1.0.20260102/AndroidManifest.xml:12:9-19:19
+85            android:name="com.wireguard.android.backend.GoBackend$VpnService"
+85-->[com.wireguard.android:tunnel:1.0.20260102] /home/ubuntu/.gradle/caches/8.14.3/transforms/b3c6fe14201b8d8e784426f4cf951db0/transformed/tunnel-1.0.20260102/AndroidManifest.xml:13:13-78
+86            android:exported="false"
+86-->[com.wireguard.android:tunnel:1.0.20260102] /home/ubuntu/.gradle/caches/8.14.3/transforms/b3c6fe14201b8d8e784426f4cf951db0/transformed/tunnel-1.0.20260102/AndroidManifest.xml:14:13-37
+87            android:permission="android.permission.BIND_VPN_SERVICE" >
+87-->[com.wireguard.android:tunnel:1.0.20260102] /home/ubuntu/.gradle/caches/8.14.3/transforms/b3c6fe14201b8d8e784426f4cf951db0/transformed/tunnel-1.0.20260102/AndroidManifest.xml:15:13-69
+88            <intent-filter>
+88-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:59:13-61:29
+89                <action android:name="android.net.VpnService" />
+89-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:60:17-64
+89-->/home/ubuntu/oodi-proxy-updated/android/app/src/main/AndroidManifest.xml:60:25-62
+90            </intent-filter>
+91        </service>
+92
+93        <provider
+93-->[androidx.emoji2:emoji2:1.3.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/353d69426d62513a7e19e841051a3a44/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+94            android:name="androidx.startup.InitializationProvider"
+94-->[androidx.emoji2:emoji2:1.3.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/353d69426d62513a7e19e841051a3a44/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+95            android:authorities="com.oodiproxyseloom1.androidx-startup"
+95-->[androidx.emoji2:emoji2:1.3.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/353d69426d62513a7e19e841051a3a44/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+96            android:exported="false" >
+96-->[androidx.emoji2:emoji2:1.3.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/353d69426d62513a7e19e841051a3a44/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+97            <meta-data
+97-->[androidx.emoji2:emoji2:1.3.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/353d69426d62513a7e19e841051a3a44/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+98                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+98-->[androidx.emoji2:emoji2:1.3.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/353d69426d62513a7e19e841051a3a44/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+99                android:value="androidx.startup" />
+99-->[androidx.emoji2:emoji2:1.3.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/353d69426d62513a7e19e841051a3a44/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+100            <meta-data
+100-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/ubuntu/.gradle/caches/8.14.3/transforms/14a3b51da1167f75215e7e32d2231e74/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+101                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+101-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/ubuntu/.gradle/caches/8.14.3/transforms/14a3b51da1167f75215e7e32d2231e74/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+102                android:value="androidx.startup" />
+102-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/ubuntu/.gradle/caches/8.14.3/transforms/14a3b51da1167f75215e7e32d2231e74/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+103            <meta-data
+103-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+104                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+104-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+105                android:value="androidx.startup" />
+105-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+106        </provider>
+107
+108        <receiver
+108-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+109            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+109-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+110            android:directBootAware="false"
+110-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+111            android:enabled="true"
+111-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+112            android:exported="true"
+112-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+113            android:permission="android.permission.DUMP" >
+113-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+114            <intent-filter>
+114-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+115                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+115-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+115-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+116            </intent-filter>
+117            <intent-filter>
+117-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+118                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+118-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+118-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+119            </intent-filter>
+120            <intent-filter>
+120-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+121                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+121-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+121-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+122            </intent-filter>
+123            <intent-filter>
+123-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+124                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+124-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+124-->[androidx.profileinstaller:profileinstaller:1.4.0] /home/ubuntu/.gradle/caches/8.14.3/transforms/f95ab50c54d3211c648684c462933e30/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+125            </intent-filter>
+126        </receiver>
+127    </application>
+128
+129</manifest>

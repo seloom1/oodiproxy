@@ -1,0 +1,12 @@
+{
+	"appId": "com.oodiproxyseloom1",
+	"appName": "SeloomWarp VPN",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https"
+	},
+	"android": {
+		"backgroundColor": "#060814",
+		"allowMixedContent": true
+	}
+}
