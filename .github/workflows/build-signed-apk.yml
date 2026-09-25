@@ -1,0 +1,79 @@
+name: Build signed Android APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-release:
+    name: Build OODI release APK
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Set up JDK
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools platforms;android-36 build-tools;36.0.0'
+
+      - name: Install JavaScript dependencies
+        run: npm ci
+
+      - name: Check TypeScript
+        run: npm run lint
+
+      - name: Build web assets and sync Capacitor
+        run: npm run android:sync
+
+      - name: Verify bundled keystore
+        shell: bash
+        run: |
+          set -euo pipefail
+          keystore=android/app/oodiproxyseloom1-signing-debug
+          test -s "$keystore"
+          keytool -list -keystore "$keystore" \
+            -storepass android -alias androiddebugkey >/dev/null
+
+      - name: Build signed release APK
+        working-directory: android
+        env:
+          RELEASE_KEYSTORE_PATH: ${{ github.workspace }}/android/app/oodiproxyseloom1-signing-debug
+          RELEASE_STORE_PASSWORD: android
+          RELEASE_KEY_ALIAS: androiddebugkey
+          RELEASE_KEY_PASSWORD: android
+        run: ./gradlew :app:assembleRelease --no-daemon
+
+      - name: Verify package identity and signing certificate
+        shell: bash
+        run: |
+          set -euo pipefail
+          apk=android/app/build/outputs/apk/release/app-release.apk
+          "$ANDROID_HOME/build-tools/36.0.0/aapt" dump badging "$apk" | grep -q "name='com.oodiproxyseloom1'"
+          signer_output=$("$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose --print-certs "$apk")
+          echo "$signer_output" | grep -qi '5f667f8dea9d1816a959aa53bf5fa4b377bc48247bc818aa61ecf7f1ca332cf5'
+          mkdir -p artifacts
+          cp "$apk" artifacts/oodiproxyseloom1-release.apk
+
+      - name: Upload signed APK artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: oodiproxy-signed-release-apk
+          path: artifacts/oodiproxyseloom1-release.apk
+          if-no-files-found: error
+          retention-days: 30

@@ -113,7 +113,7 @@ com.oodiproxyseloom1
 - [تحميل Release APK](https://github.com/seloom1/oodiproxy/releases/download/v2.1.0/oodiproxyseloom1-2.1-release.apk)
 - [تحميل Debug APK](https://github.com/seloom1/oodiproxy/releases/download/v2.1.0/oodiproxyseloom1-2.1-debug.apk)
 
-> نسخة Release الحالية موقعة للتجربة المحلية. للنشر الرسمي على Google Play يجب استخدام keystore ثابت ومفتاح رفع محفوظ بشكل آمن، ويفضل رفع ملف Android App Bundle بصيغة `.aab`.
+> The signing file is stored at `android/app/oodiproxyseloom1-signing-debug` at the owner's request. This repository is public, so anyone can download it and sign APKs; do not use this approach for a confidential production key.
 
 ## 🧰 البناء محلياً
 
@@ -133,6 +133,24 @@ cd android
 android/app/build/outputs/apk/debug/
 android/app/build/outputs/apk/release/
 ```
+
+## Build a signed APK
+
+**Locally**, after installing Node.js, Android SDK, and JDK:
+
+```bash
+npm ci
+npm run lint
+npm run android:sync
+cd android
+RELEASE_KEYSTORE_PATH="$PWD/app/oodiproxyseloom1-signing-debug" \
+RELEASE_STORE_PASSWORD=android \
+RELEASE_KEY_ALIAS=androiddebugkey \
+RELEASE_KEY_PASSWORD=android \
+./gradlew :app:assembleRelease --no-daemon
+```
+
+Or open **Actions → Build signed Android APK → Run workflow** on GitHub, then download the `oodiproxy-signed-release-apk` artifact (available for 30 days). Increase `versionCode` in `android/app/build.gradle` before distributing an update.
 
 ## ⚠️ ملاحظات مهمة
 
