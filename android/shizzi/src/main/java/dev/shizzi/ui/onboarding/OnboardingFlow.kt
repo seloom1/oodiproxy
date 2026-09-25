@@ -99,7 +99,9 @@ private fun permissionsAction(
     actions: OnboardingActions,
     onNext: () -> Unit,
 ): WizardAction {
-    if (rows.all { it.isGranted }) return WizardAction(label = "Continue", onClick = onNext)
+    if (rows.filter { it.isRequiredForProgress }.all { it.isGranted }) {
+        return WizardAction(label = "Continue", onClick = onNext)
+    }
 
     return WizardAction(label = "Grant permissions", onClick = actions.onRequestAllPermissions)
 }

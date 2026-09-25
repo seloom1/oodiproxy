@@ -112,7 +112,9 @@ public class SeloomVpnService extends VpnService {
 
         final Intent copy = new Intent(intent);
         submitSafely(() -> startVpn(copy));
-        return START_NOT_STICKY;
+        // Redeliver the active tunnel configuration if Android reclaims the
+        // process while the app is in the background.
+        return START_REDELIVER_INTENT;
     }
 
     private void startVpn(Intent intent) {

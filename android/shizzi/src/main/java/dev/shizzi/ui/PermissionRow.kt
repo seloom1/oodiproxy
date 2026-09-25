@@ -10,6 +10,7 @@ data class PermissionRowState(
     val title: String,
     val rationale: String,
     val isGranted: Boolean,
+    val isRequiredForProgress: Boolean = true,
     val onAct: () -> Unit,
 )
 
@@ -30,6 +31,7 @@ fun permissionRows(
             title = status.permission.title,
             rationale = status.permission.rationale,
             isGranted = status.isGranted,
+            isRequiredForProgress = status.permission != AppPermission.BATTERY_EXEMPTION,
             onAct = { onGrantPermission(status.permission) },
         )
     }

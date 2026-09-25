@@ -103,7 +103,7 @@ com.oodiproxyseloom1
 |---|---|
 | Package Name | `com.oodiproxyseloom1` |
 | Version Name | `2.1.0` |
-| Version Code | `16` |
+| Version Code | `18` |
 | Minimum Android | API 30 / Android 11 |
 | Target SDK | API 36 |
 | Release | [v2.1.0 على GitHub](https://github.com/seloom1/oodiproxy/releases/tag/v2.1.0) |
