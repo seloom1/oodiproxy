@@ -1,6 +1,7 @@
 import React from 'react';
-import { Database, Globe, MapPin, RefreshCw, Settings2, Wifi, Hexagon, Network } from 'lucide-react';
+import { Database, Globe, MapPin, RefreshCw, Radio, Settings2, ShieldCheck, Signal } from 'lucide-react';
 import { formatBytes } from '../utils/wireguard';
+import { CellularInfo, getSignalLabel } from '../utils/cellularInfo';
 
 interface DeviceInfoBarProps {
   externalIp: string;
@@ -8,17 +9,13 @@ interface DeviceInfoBarProps {
   countryFlag?: string;
   isConnected: boolean;
   totalBytes: number;
+  cellularInfo: CellularInfo;
   onRefreshIp?: () => void;
+  onRefreshCellular?: () => void;
   onOpenHistory?: () => void;
-  onOpenInternetSharing?: () => void;
+  onOpenShizzi?: () => void;
   isLoadingIp?: boolean;
-  sharingActive?: boolean;
-  sharingDeviceCount?: number;
-  sharingBytes?: number;
-  sharingDownloadBytes?: number;
-  sharingUploadBytes?: number;
-  sharingTheme?: 'cyan' | 'violet' | 'green';
-  onSharingThemeChange?: (theme: 'cyan' | 'violet' | 'green') => void;
+  isLoadingCellular?: boolean;
 }
 
 export const DeviceInfoBar: React.FC<DeviceInfoBarProps> = ({
@@ -27,19 +24,19 @@ export const DeviceInfoBar: React.FC<DeviceInfoBarProps> = ({
   countryFlag = '🌐',
   isConnected,
   totalBytes,
+  cellularInfo,
   onRefreshIp,
+  onRefreshCellular,
   onOpenHistory,
-  onOpenInternetSharing,
+  onOpenShizzi,
   isLoadingIp = false,
-  sharingActive = false,
-  sharingDeviceCount = 0,
-  sharingBytes = 0,
-  sharingDownloadBytes = 0,
-  sharingUploadBytes = 0,
-  sharingTheme = 'cyan',
-  onSharingThemeChange,
+  isLoadingCellular = false,
 }) => {
-  const theme = sharingTheme === 'violet' ? { border: 'border-violet-400/40', bg: 'bg-violet-500/10', accent: 'text-violet-200', dot: 'bg-violet-400' } : sharingTheme === 'green' ? { border: 'border-emerald-400/40', bg: 'bg-emerald-500/10', accent: 'text-emerald-200', dot: 'bg-emerald-400' } : { border: 'border-cyan-400/40', bg: 'bg-cyan-500/10', accent: 'text-cyan-200', dot: 'bg-cyan-400' };
+  const signalLevel = cellularInfo.signalLevel;
+  const signalColor = signalLevel === null ? 'text-slate-500' : signalLevel >= 3 ? 'text-emerald-400' : signalLevel >= 2 ? 'text-amber-300' : 'text-rose-400';
+  const carrier = cellularInfo.carrierName || 'غير معروف';
+  const line = cellularInfo.lineName || cellularInfo.lineNumber || 'غير متاح';
+
   return (
     <div className="w-full rounded-xl py-1.5 px-2 bg-[#090d24]/90 backdrop-blur-md border border-slate-800/80 text-right select-none">
       <div className="grid grid-cols-2 divide-x divide-x-reverse divide-slate-800/80">
@@ -50,7 +47,6 @@ export const DeviceInfoBar: React.FC<DeviceInfoBarProps> = ({
             <span className="text-[10px] text-slate-200 font-mono truncate">{isConnected ? externalIp : 'غير متصل'}</span>
           </span>
         </button>
-
         <div className="flex items-center justify-center gap-1.5 min-w-0 px-1" dir="rtl">
           <MapPin className="w-3.5 h-3.5 text-fuchsia-400 shrink-0" />
           <span className="text-[8px] text-slate-500">الدولة</span>
@@ -58,6 +54,25 @@ export const DeviceInfoBar: React.FC<DeviceInfoBarProps> = ({
           <span className="text-base leading-none shrink-0" role="img" aria-label="علم الدولة">{isConnected ? countryFlag : '🌐'}</span>
         </div>
       </div>
+
+      <button type="button" onClick={onRefreshCellular} title="تحديث معلومات الشريحة" className="mt-1.5 w-full rounded-lg border border-cyan-500/20 bg-cyan-500/5 px-2 py-1.5 hover:bg-cyan-500/10 transition-colors" dir="rtl">
+        <div className="flex items-center justify-between gap-2">
+          <span className="flex items-center gap-1.5 min-w-0">
+            <Signal className={`w-4 h-4 shrink-0 ${signalColor}`} />
+            <span className="text-[8px] text-slate-500">قوة الإشارة</span>
+            <span className={`text-[10px] font-bold ${signalColor}`}>{getSignalLabel(signalLevel)}</span>
+            {cellularInfo.signalDbm !== null && <span className="text-[9px] font-mono text-slate-400">({cellularInfo.signalDbm} dBm)</span>}
+          </span>
+          <span className="flex items-center gap-1 text-[9px] text-slate-400 shrink-0">
+            {isLoadingCellular && <RefreshCw className="w-2.5 h-2.5 animate-spin" />}
+            {cellularInfo.networkType || 'شبكة الهاتف'}
+          </span>
+        </div>
+        <div className="mt-1 grid grid-cols-2 gap-1 border-t border-slate-800/70 pt-1 text-[9px]" dir="rtl">
+          <span className="truncate text-slate-400">الشركة: <b className="text-cyan-200">{carrier}</b></span>
+          <span className="truncate text-slate-400">الخط: <b className="text-violet-200">{line}</b></span>
+        </div>
+      </button>
 
       <div className="mt-1 pt-1 border-t border-slate-800/80 flex items-center justify-center gap-2" dir="rtl">
         <Database className="w-3.5 h-3.5 text-fuchsia-400 shrink-0" />
@@ -68,14 +83,11 @@ export const DeviceInfoBar: React.FC<DeviceInfoBarProps> = ({
         </button>
       </div>
 
-      <button type="button" onClick={onOpenInternetSharing} className={`mt-1.5 w-full rounded-xl border ${theme.border} ${theme.bg} px-3 py-2 flex items-center justify-between text-[10px] font-bold ${theme.accent} hover:brightness-125 transition-colors`} dir="rtl">
-        <span className="flex items-center gap-2"><Wifi className="w-4 h-4" /><span>مشاركة الإنترنت NetShare</span></span><span className={`h-2.5 w-2.5 rounded-full ${sharingActive ? theme.dot : 'bg-slate-600'}`} />
+      <button type="button" onClick={onOpenShizzi} className="mt-1.5 w-full rounded-xl border border-violet-400/40 bg-violet-500/10 px-3 py-2.5 flex items-center justify-between text-[10px] font-bold text-violet-100 hover:bg-violet-500/20 transition-colors" dir="rtl">
+        <span className="flex items-center gap-2"><Radio className="w-4 h-4 text-violet-300" /><span>بث الإنترنت عبر Shizuku</span></span>
+        <span className="flex items-center gap-1.5 text-[9px] text-violet-300"><ShieldCheck className="w-3.5 h-3.5" />Shizzi</span>
       </button>
-      <div className={`mt-1.5 rounded-xl border ${theme.border} ${theme.bg} p-3`} dir="rtl">
-        <div className="flex items-center justify-between"><div className="flex items-center gap-3"><div className="relative flex h-12 w-12 items-center justify-center"><Hexagon className={`absolute h-12 w-12 ${theme.accent} opacity-40`} strokeWidth={1.2} /><Network className={`relative h-6 w-6 ${theme.accent}`} /><span className={`absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full ${theme.dot} px-1 text-[9px] font-black text-slate-950`}>{sharingDeviceCount}</span></div><div><span className="text-[10px] text-slate-400">عملاء الأجهزة المتصلة</span><div className={`text-2xl font-black leading-none ${theme.accent}`}>{sharingDeviceCount}</div></div></div><div className="text-left"><div className="text-[9px] text-slate-400">الاستخدام الكلي</div><div className="text-sm font-black text-fuchsia-200 font-mono">{formatBytes(sharingBytes)}</div></div></div>
-        <div className="mt-2 grid grid-cols-2 gap-2 text-[9px]"><div className="rounded-lg bg-slate-950/40 p-1.5 text-center text-emerald-300">↓ تنزيل {formatBytes(sharingDownloadBytes)}</div><div className="rounded-lg bg-slate-950/40 p-1.5 text-center text-fuchsia-300">↑ رفع {formatBytes(sharingUploadBytes)}</div></div>
-        <div className="mt-2 flex items-center justify-between"><span className="text-[8px] text-slate-500">ثيم البطاقة</span><div className="flex gap-1.5">{([['cyan', 'bg-cyan-400'], ['violet', 'bg-violet-400'], ['green', 'bg-emerald-400']] as const).map(([value, color]) => <button key={value} type="button" aria-label={`ثيم ${value}`} onClick={() => onSharingThemeChange?.(value)} className={`h-3.5 w-3.5 rounded-full ${color} ${sharingTheme === value ? 'ring-2 ring-white ring-offset-1 ring-offset-slate-900' : 'opacity-60'}`} />)}</div></div>
-      </div>
+      <p className="mt-1 px-1 text-center text-[8px] text-slate-500" dir="rtl">اضغط لفتح واجهة Shizzi وتشغيل نقطة الاتصال بدون Root</p>
     </div>
   );
 };

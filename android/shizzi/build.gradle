@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
+
+android {
+    namespace 'dev.shizzi'
+    compileSdk 36
+
+    defaultConfig {
+        minSdk 30
+        targetSdk 36
+        buildConfigField 'int', 'SERVICE_BUILD_ID', '1'
+        buildConfigField 'String', 'APPLICATION_ID', '\"com.oodiproxyseloom1\"'
+        buildConfigField 'String', 'VERSION_NAME', '"2.1.0"'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions { jvmTarget = '17' }
+
+    buildFeatures {
+        compose true
+        aidl true
+        buildConfig true
+    }
+
+    packaging {
+        resources.excludes += '/META-INF/{AL2.0,LGPL2.1}'
+    }
+}
+
+dependencies {
+    // The host application packages this local AAR. Keeping it compile-only
+    // avoids AGP rejecting a local AAR nested inside the Shizzi AAR.
+    compileOnly files('libs/datapath.aar')
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.7'
+    implementation 'androidx.activity:activity-compose:1.9.3'
+    implementation 'androidx.datastore:datastore-preferences:1.1.1'
+    def composeBom = platform('androidx.compose:compose-bom:2025.11.00')
+    implementation composeBom
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.compose.material:material-icons-extended'
+    implementation 'com.materialkolor:material-color-utilities:2.1.1'
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    implementation 'dev.rikka.shizuku:api:13.1.5'
+    implementation 'dev.rikka.shizuku:provider:13.1.5'
+    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
+}

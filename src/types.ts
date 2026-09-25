@@ -27,7 +27,6 @@ export interface AppSettings {
   dpiBypass: boolean;
   autoReconnect: boolean;
   bypassLanRoute: boolean;
-  proxyTethering: boolean;
   externalIp: string;
   location: string;
   country?: string;

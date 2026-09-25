@@ -90,11 +90,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </select>
           </div>
 
-          <div className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-3 text-right" dir="rtl">
-            <div className="flex items-center justify-end gap-2 text-xs font-black text-cyan-200"><Wifi className="h-4 w-4" /> طريقة تشغيل NetShare</div>
-            <p className="mt-2 text-[11px] leading-6 text-slate-300">هذه شبكة Wi‑Fi Direct افتراضية من نوع NetShare وليست Hotspot الهاتف. بعد بث الشبكة والاتصال بالهاتف المستلم للإنترنت، اذهب إلى إعدادات شبكة Wi‑Fi، واجعل الخادم الوكيل <b className="text-cyan-200">يدويًا</b>، ثم أضف الخادم الوكيل <b className="font-mono text-cyan-200">192.168.49.1</b> والبورت <b className="font-mono text-cyan-200">8282</b>. للتطبيقات التي تدعم SOCKS5 استخدم المنفذ <b className="font-mono text-cyan-200">8181</b>. إعدادات Hotspot الموجودة في القائمة لا تتأثر.</p>
-          </div>
-
           {/* MTU & Keepalive */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">

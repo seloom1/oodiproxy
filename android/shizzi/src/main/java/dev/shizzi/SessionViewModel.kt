@@ -1,0 +1,251 @@
+package dev.shizzi
+
+import android.app.Application
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.os.Build
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import dev.shizzi.ui.theme.AccentChoice
+import dev.shizzi.ui.theme.DesignLanguage
+import dev.shizzi.ui.theme.ThemeChoice
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+class SessionViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val diagnostics = TetherClient()
+
+    private val settingsStore = getApplication<App>().settingsStore
+
+    val settings: StateFlow<Settings?> = settingsStore.settings.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = null,
+    )
+
+    private val localState = MutableStateFlow(SessionUiState())
+    val state: StateFlow<SessionUiState> = localState.asStateFlow()
+
+    private val localDiagnostics = MutableStateFlow<DiagnosticsState>(DiagnosticsState.Idle)
+    val diagnosticsState: StateFlow<DiagnosticsState> = localDiagnostics.asStateFlow()
+
+    private val compatibility =
+        CompatibilityController(getApplication(), diagnostics, viewModelScope)
+
+    val compatibilityState: StateFlow<CompatibilityState> = compatibility.state
+
+    private val permissions = PermissionInspector(application)
+
+    private val permissionRequest = PermissionRequest(application)
+
+    private val localPermissions = MutableStateFlow(emptyList<PermissionStatus>())
+    val permissionState: StateFlow<List<PermissionStatus>> = localPermissions.asStateFlow()
+
+    private var sessionCollector: Job? = null
+
+    private val sessionStateReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            if (intent?.action != Automation.ACTION_SESSION_STATE) return
+            val status = runCatching {
+                UiStatus.valueOf(intent.getStringExtra(Automation.EXTRA_STATUS).orEmpty())
+            }.getOrDefault(UiStatus.ERROR)
+            localState.update { current ->
+                current.copy(
+                    isBusy = status == UiStatus.LOADING,
+                    status = status,
+                    detail = intent.getStringExtra(Automation.EXTRA_DETAIL).orEmpty(),
+                    interfaceName = intent.getStringExtra(Automation.EXTRA_INTERFACE).orEmpty(),
+                    lastError = intent.getStringExtra(Automation.EXTRA_ERROR).orEmpty(),
+                    isVpnBound = false,
+                    isVpnBypassed = false,
+                    clientCount = intent.getIntExtra(Automation.EXTRA_CLIENT_COUNT, 0),
+                    traffic = Traffic(
+                        up = intent.getLongExtra(Automation.EXTRA_BYTES_UP, 0L),
+                        down = intent.getLongExtra(Automation.EXTRA_BYTES_DOWN, 0L),
+                    ),
+                )
+            }
+        }
+    }
+
+    init {
+        val filter = IntentFilter(Automation.ACTION_SESSION_STATE)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            application.registerReceiver(sessionStateReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            @Suppress("DEPRECATION")
+            application.registerReceiver(sessionStateReceiver, filter)
+        }
+        refreshShizukuState()
+        refreshPermissions()
+        observeSession()
+    }
+
+    private fun observeSession() {
+        if (sessionCollector?.isActive == true) return
+
+        sessionCollector = viewModelScope.launch {
+            SessionService.liveState.collect { session ->
+                localState.update { local -> session.copy(shizukuState = local.shizukuState) }
+            }
+        }
+    }
+
+    fun refreshShizukuState() {
+        localState.update { it.copy(shizukuState = ShizukuGate.currentState()) }
+    }
+
+    fun requestPermission() {
+        ShizukuGate.requestPermission()
+    }
+
+    fun actOnShizuku() {
+        ShizukuGate.remedy(localState.value.shizukuState)
+    }
+
+    fun refreshPermissions() {
+        localPermissions.value = permissions.observe()
+    }
+
+    fun isPermissionGranted(permission: AppPermission): Boolean =
+        permissions.isGranted(permission)
+
+    fun openPermissionSettings(permission: AppPermission) {
+        permissionRequest.open(permission)
+    }
+
+    fun setAutomation(isEnabled: Boolean) {
+        viewModelScope.launch { settingsStore.setAutomationEnabled(isEnabled) }
+    }
+
+    fun regenerateAutomationToken() {
+        viewModelScope.launch { settingsStore.setAutomationToken(AutomationToken.generate()) }
+    }
+
+    fun setLogging(enabled: Boolean) {
+        SessionLog.setEnabled(enabled)
+        diagnostics.setLogging(enabled)
+        viewModelScope.launch { settingsStore.setLogging(enabled) }
+    }
+
+    fun setVpnMode(mode: VpnMode) {
+        viewModelScope.launch { settingsStore.setVpnMode(mode) }
+    }
+
+    fun setTheme(choice: ThemeChoice) {
+        viewModelScope.launch { settingsStore.setTheme(choice) }
+    }
+
+    fun setDesign(design: DesignLanguage) {
+        viewModelScope.launch { settingsStore.setDesign(design) }
+    }
+
+    fun setAccent(accent: AccentChoice) {
+        viewModelScope.launch { settingsStore.setAccent(accent) }
+    }
+
+    fun addCustomAccent(argb: Int) {
+        viewModelScope.launch { settingsStore.addCustomAccent(argb) }
+    }
+
+    fun toggle() {
+        val context = getApplication<Application>()
+
+        runCatching {
+            when {
+                localState.value.status == UiStatus.CONNECTED -> SessionService.stop(context)
+                else -> SessionService.start(context)
+            }
+        }.onFailure { failure ->
+            val detail = "${failure.javaClass.simpleName}: ${failure.message}"
+            SessionLog.error("could not start Shizzi session: $detail")
+            localState.update {
+                it.copy(
+                    isBusy = false,
+                    status = UiStatus.ERROR,
+                    lastError = detail,
+                    detail = "Session could not be started",
+                )
+            }
+        }
+    }
+
+    fun cancel() {
+        localState.update {
+            it.asStopped()
+        }
+        SessionService.stop(getApplication())
+    }
+
+    fun runProbes() {
+        if (localDiagnostics.value is DiagnosticsState.Running) return
+        localDiagnostics.value = DiagnosticsState.Running
+
+        viewModelScope.launch {
+            localDiagnostics.value = runCatching { diagnostics.runProbes(true) }
+                .fold(
+                    onSuccess = { report ->
+                        DiagnosticsState.Complete(report, TetherService.REPORT_PATH)
+                    },
+                    onFailure = { failure ->
+
+                        SessionLog.error(
+                            "diagnostics failed in the app process: " +
+                                "${failure.javaClass.name}: ${failure.message}",
+                        )
+                        DiagnosticsState.Failed(
+                            "${failure.javaClass.simpleName}: ${failure.message}",
+                        )
+                    },
+                )
+            refreshShizukuState()
+        }
+    }
+
+    fun checkCompatibility() = compatibility.check()
+
+    fun downloadTetheringApex() = compatibility.downloadApex()
+
+    fun installTetheringApex() = compatibility.installApex()
+
+    fun rebootDevice() = compatibility.rebootDevice()
+
+    fun completeOnboarding() {
+        viewModelScope.launch { settingsStore.setOnboardingComplete(true) }
+    }
+
+    fun restartOnboarding() {
+        compatibility.reset()
+        viewModelScope.launch { settingsStore.setOnboardingComplete(false) }
+    }
+
+    fun dismissDiagnostics() {
+        if (localDiagnostics.value is DiagnosticsState.Running) return
+        localDiagnostics.value = DiagnosticsState.Idle
+    }
+
+    fun clearLog(onCleared: (String?) -> Unit) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) { SessionLog.clear() }
+            onCleared(diagnostics.clearLog())
+        }
+    }
+
+    override fun onCleared() {
+
+        getApplication<Application>().unregisterReceiver(sessionStateReceiver)
+        diagnostics.unbind()
+        super.onCleared()
+    }
+}

@@ -110,11 +110,12 @@ public class VpnBridgePlugin extends Plugin {
         put(service, SeloomVpnService.EXTRA_ADDRESS, call.getString("address", "172.16.0.2/32"));
         put(service, SeloomVpnService.EXTRA_PRIVATE_KEY, privateKey);
         put(service, SeloomVpnService.EXTRA_PUBLIC_KEY, publicKey);
-        put(service, SeloomVpnService.EXTRA_ALLOWED_IPS, call.getString("allowedIPs", "0.0.0.0/0,::/0"));
+        // IPv6 must be explicitly present in the peer configuration. Routing
+        // ::/0 by default breaks IPv6-only destinations on IPv4-only peers.
+        put(service, SeloomVpnService.EXTRA_ALLOWED_IPS, call.getString("allowedIPs", "0.0.0.0/0"));
         service.putExtra(SeloomVpnService.EXTRA_MTU, call.getInt("mtu", 1280));
         service.putExtra(SeloomVpnService.EXTRA_KEEPALIVE, call.getInt("keepalive", 25));
         service.putExtra(SeloomVpnService.EXTRA_BYPASS_LAN, call.getBoolean("bypassLanRoute", false));
-        service.putExtra(SeloomVpnService.EXTRA_PROXY_TETHERING, call.getBoolean("proxyTethering", false));
         service.putExtra(SeloomVpnService.EXTRA_EXCLUDED_APPLICATIONS, joinApplications(call));
 
         Intent permission = VpnService.prepare(activity);

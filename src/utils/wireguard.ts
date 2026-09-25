@@ -69,7 +69,9 @@ export function parseWireguardUri(uriString: string): WireguardServer {
     .map(a => decodeURIComponent(a).trim())
     .filter(Boolean);
 
-  const rawDns = params.get('dns') || '1.1.1.1, 2606:4700:4700::1111';
+  // Keep DNS IPv4-only by default. IPv6 DNS is opt-in for peers that
+  // explicitly provide IPv6 routing and an IPv6 interface address.
+  const rawDns = params.get('dns') || '1.1.1.1, 1.0.0.1';
   const dns = rawDns
     .split(',')
     .map(d => decodeURIComponent(d).trim())
@@ -78,7 +80,9 @@ export function parseWireguardUri(uriString: string): WireguardServer {
   const mtu = parseInt(params.get('mtu') || '1280', 10) || 1280;
   const keepalive = parseInt(params.get('keepalive') || params.get('persistentkeepalive') || '25', 10) || 25;
 
-  const rawAllowed = params.get('allowedips') || params.get('allowed_ips') || '0.0.0.0/0, ::/0';
+  // Keep IPv6 opt-in. Many mobile WireGuard peers are IPv4-only; routing
+  // ::/0 to those peers can make IPv6-capable apps/sites appear offline.
+  const rawAllowed = params.get('allowedips') || params.get('allowed_ips') || '0.0.0.0/0';
   const allowedIPs = rawAllowed
     .split(',')
     .map(a => decodeURIComponent(a).trim())
@@ -132,8 +136,9 @@ export function buildWireguardUri(server: WireguardServer): string {
   const encAddr = encodeURIComponent(server.addresses.join(','));
   const encDns = encodeURIComponent(server.dns.join(','));
   const encName = encodeURIComponent(server.name);
+  const encAllowed = encodeURIComponent(server.allowedIPs.join(','));
 
-  return `wireguard://${encPriv}@${server.endpoint}?address=${encAddr}&publickey=${encPub}&privatekey=${encPriv}&dns=${encDns}&mtu=${server.mtu}&keepalive=${server.persistentKeepalive}#${encName}`;
+  return `wireguard://${encPriv}@${server.endpoint}?address=${encAddr}&publickey=${encPub}&privatekey=${encPriv}&dns=${encDns}&mtu=${server.mtu}&keepalive=${server.persistentKeepalive}&allowedips=${encAllowed}#${encName}`;
 }
 
 /**
@@ -147,7 +152,7 @@ export function parseWireguardConf(confText: string, serverName = 'Imported Wire
   let mtu = 1280;
   let publicKey = '';
   let endpoint = 'engage.cloudflareclient.com:2408';
-  let allowedIPs = ['0.0.0.0/0', '::/0'];
+  let allowedIPs = ['0.0.0.0/0'];
   let persistentKeepalive = 25;
 
   for (const rawLine of lines) {

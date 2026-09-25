@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Server, Plus, QrCode, Settings, Settings2, Activity, ExternalLink, Cloud, ShieldOff } from 'lucide-react';
+import { X, Server, Plus, QrCode, Settings, Activity, ExternalLink, Cloud, ShieldOff, Zap, BatteryCharging } from 'lucide-react';
 
 interface NavigationDrawerProps {
   isOpen: boolean;
@@ -8,8 +8,9 @@ interface NavigationDrawerProps {
   onOpenAddServer: () => void;
   onOpenExport: () => void;
   onOpenSettings: () => void;
-  onOpenHotspotSettings: () => void;
   onOpenAppExclusions: () => void;
+  onOpenShizzi: () => void;
+  onOpenShizziPermissions: () => void;
   excludedAppsCount: number;
   isConnected: boolean;
 }
@@ -21,8 +22,9 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
   onOpenAddServer,
   onOpenExport,
   onOpenSettings,
-  onOpenHotspotSettings,
   onOpenAppExclusions,
+  onOpenShizzi,
+  onOpenShizziPermissions,
   excludedAppsCount,
   isConnected,
 }) => {
@@ -127,20 +129,6 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
           <button
             onClick={() => {
               onClose();
-              onOpenHotspotSettings();
-            }}
-            className="w-full p-3 rounded-xl hover:bg-slate-800/70 text-slate-200 hover:text-cyan-300 flex items-center justify-between text-xs font-bold transition-colors"
-          >
-            <span className="text-slate-500 text-[10px]">VPN / Proxy</span>
-            <div className="flex items-center gap-2.5">
-              <span>إعدادات بث الإنترنت Hotspot</span>
-              <Settings2 className="w-4 h-4 text-cyan-400" />
-            </div>
-          </button>
-
-          <button
-            onClick={() => {
-              onClose();
               onOpenAppExclusions();
             }}
             className="w-full p-3 rounded-xl hover:bg-slate-800/70 text-slate-200 hover:text-fuchsia-300 flex items-center justify-between text-xs font-bold transition-colors"
@@ -149,6 +137,34 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
             <div className="flex items-center gap-2.5">
               <span>استثناء التطبيقات من VPN</span>
               <ShieldOff className="w-4 h-4 text-fuchsia-400" />
+            </div>
+          </button>
+
+          <button
+            onClick={() => {
+              onClose();
+              onOpenShizzi();
+            }}
+            className="w-full p-3 rounded-xl hover:bg-violet-950/60 text-slate-200 hover:text-violet-300 flex items-center justify-between text-xs font-bold transition-colors"
+          >
+            <span className="text-violet-300 text-[10px] bg-violet-950/70 px-1.5 py-0.5 rounded border border-violet-500/30">Shizuku</span>
+            <div className="flex items-center gap-2.5">
+              <span>مشاركة Shizzi بدون Root</span>
+              <Zap className="w-4 h-4 text-violet-400" />
+            </div>
+          </button>
+
+          <button
+            onClick={() => {
+              onClose();
+              onOpenShizziPermissions();
+            }}
+            className="w-full p-3 rounded-xl hover:bg-amber-950/50 text-slate-200 hover:text-amber-300 flex items-center justify-between text-xs font-bold transition-colors"
+          >
+            <span className="text-amber-300 text-[10px] bg-amber-950/60 px-1.5 py-0.5 rounded border border-amber-500/30">صلاحيات</span>
+            <div className="flex items-center gap-2.5">
+              <span>صلاحيات Shizzi والبطارية</span>
+              <BatteryCharging className="w-4 h-4 text-amber-400" />
             </div>
           </button>
 

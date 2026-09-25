@@ -15,7 +15,6 @@ export interface VpnConnectOptions {
   publicKey?: string;
   allowedIPs?: string;
   bypassLanRoute?: boolean;
-  proxyTethering?: boolean;
   excludedApplications?: string[];
 }
 

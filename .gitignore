@@ -5,3 +5,7 @@ android/.gradle/
 android/build/
 android/app/build/
 android/local.properties
+
+android/shizzi/build/
+android/shizzi/.cxx/
+android/app/oodiproxyseloom1-signing-debug
