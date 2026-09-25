@@ -34,7 +34,9 @@
 | Target SDK | API 36 |
 | Release | [v2.1.0 على GitHub](https://github.com/seloom1/oodiproxy/releases/tag/v2.1.0) |
 
-## متطلبات Shizuku
+## متطلبات النظام وShizuku
+
+> **تنبيه مهم:** الإصدار `v2.1.0` يتطلب **Android 11 / API 30 أو أحدث**. أجهزة Android 10 أو الإصدارات الأقدم لن تتمكن من تثبيت هذا التحديث، لأن دمج Shizuku ومكوّن المشاركة الجديد يعتمد على واجهات Android الحديثة.
 
 يجب تثبيت تطبيق **Shizuku** وتشغيله عبر Wireless Debugging أو Root، ثم فتح خيار Shizuku داخل OODI ومنح الصلاحية المطلوبة. ميزة المشاركة تعتمد على إمكانيات الجهاز وإصدار Android، وتستهدف أجهزة ARM64 التي تعمل بنظام Android 11 أو أحدث.
 
